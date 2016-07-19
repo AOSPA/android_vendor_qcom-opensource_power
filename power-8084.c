@@ -50,7 +50,6 @@
 static int display_hint_sent;
 static int display_hint2_sent;
 static int first_display_off_hint;
-extern int display_boost;
 
 int set_interactive_override(struct power_module *module, int on)
 {
@@ -68,16 +67,14 @@ int set_interactive_override(struct power_module *module, int on)
          * We need to be able to identify the first display off hint
          * and release the current lock holder
          */
-        if (display_boost) {
-            if (!first_display_off_hint) {
-                undo_initial_hint_action();
-                first_display_off_hint = 1;
-            }
-            /* used for all subsequent toggles to the display */
-            if (!display_hint2_sent) {
-                undo_hint_action(DISPLAY_STATE_HINT_ID_2);
-                display_hint2_sent = 1;
-            }
+        if (!first_display_off_hint) {
+            undo_initial_hint_action();
+            first_display_off_hint = 1;
+        }
+        /* used for all subsequent toggles to the display */
+        if (!display_hint2_sent) {
+            undo_hint_action(DISPLAY_STATE_HINT_ID_2);
+            display_hint2_sent = 1;
         }
 
         if ((strncmp(governor, ONDEMAND_GOVERNOR, strlen(ONDEMAND_GOVERNOR)) == 0) &&
@@ -94,7 +91,7 @@ int set_interactive_override(struct power_module *module, int on)
         }
     } else {
         /* Display on */
-        if (display_boost && display_hint2_sent) {
+        if (display_hint2_sent) {
             int resource_values2[] = {CPUS_ONLINE_MIN_2};
             perform_hint_action(DISPLAY_STATE_HINT_ID_2,
                     resource_values2, sizeof(resource_values2)/sizeof(resource_values2[0]));
