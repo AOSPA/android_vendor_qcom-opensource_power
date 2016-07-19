@@ -50,7 +50,34 @@
 static int display_hint_sent;
 static int display_hint2_sent;
 static int first_display_off_hint;
-extern int display_boost;
+
+/**
+ * If target is 8974pro:
+ *     return true
+ * else:
+ *     return false
+ */
+static bool is_target_8974pro(void)
+{
+    int fd;
+    bool is_target_8974pro = false;
+    char buf[10] = {0};
+
+    fd = open("/sys/devices/soc0/soc_id", O_RDONLY);
+    if (fd >= 0) {
+        if (read(fd, buf, sizeof(buf) - 1) == -1) {
+            ALOGW("Unable to read soc_id");
+            is_target_8974pro = false;
+        } else {
+            int soc_id = atoi(buf);
+            if (soc_id == 194 || (soc_id >= 208 && soc_id <= 218)) {
+                is_target_8974pro = true;
+            }
+        }
+    }
+    close(fd);
+    return is_target_8974pro;
+}
 
 int set_interactive_override(struct power_module *module, int on)
 {
@@ -68,7 +95,7 @@ int set_interactive_override(struct power_module *module, int on)
          * We need to be able to identify the first display off hint
          * and release the current lock holder
          */
-        if (display_boost) {
+        if (is_target_8974pro()) {
             if (!first_display_off_hint) {
                 undo_initial_hint_action();
                 first_display_off_hint = 1;
@@ -94,7 +121,7 @@ int set_interactive_override(struct power_module *module, int on)
         }
     } else {
         /* Display on */
-        if (display_boost && display_hint2_sent) {
+        if (is_target_8974pro() && display_hint2_sent) {
             int resource_values2[] = {CPUS_ONLINE_MIN_2};
             perform_hint_action(DISPLAY_STATE_HINT_ID_2,
                     resource_values2, sizeof(resource_values2)/sizeof(resource_values2[0]));
