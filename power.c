@@ -47,6 +47,7 @@
 #include "hint-data.h"
 #include "performance.h"
 #include "power-common.h"
+#include "power-feature.h"
 
 static struct hint_handles handles[NUM_HINTS];
 
@@ -142,6 +143,11 @@ void set_interactive(struct power_module *module, int on)
     ALOGI("Got set_interactive hint");
 }
 
+void set_feature(struct power_module *module, feature_t feature, int state)
+{
+    set_device_specific_feature(module, feature, state);
+}
+
 static int power_device_open(const hw_module_t* module, const char* name,
         hw_device_t** device)
 {
@@ -155,13 +161,13 @@ static int power_device_open(const hw_module_t* module, const char* name,
 
                 if(dev) {
                     /* initialize the fields */
-                    dev->common.module_api_version = POWER_MODULE_API_VERSION_0_2;
+                    dev->common.module_api_version = POWER_MODULE_API_VERSION_0_3;
                     dev->common.tag = HARDWARE_DEVICE_TAG;
                     dev->init = power_init;
                     dev->powerHint = power_hint;
                     dev->setInteractive = set_interactive;
-                    /* At the moment we support 0.2 APIs */
-                    dev->setFeature = NULL,
+                    /* At the moment we support 0.3 APIs */
+                    dev->setFeature = set_feature;
                         dev->get_number_of_platform_modes = NULL,
                         dev->get_platform_low_power_stats = NULL,
                         dev->get_voter_list = NULL,
@@ -183,7 +189,7 @@ static int power_device_open(const hw_module_t* module, const char* name,
 struct power_module HAL_MODULE_INFO_SYM = {
     .common = {
         .tag = HARDWARE_MODULE_TAG,
-        .module_api_version = POWER_MODULE_API_VERSION_0_2,
+        .module_api_version = POWER_MODULE_API_VERSION_0_3,
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = POWER_HARDWARE_MODULE_ID,
         .name = "QTI Power HAL",
@@ -194,4 +200,5 @@ struct power_module HAL_MODULE_INFO_SYM = {
     .init = power_init,
     .powerHint = power_hint,
     .setInteractive = set_interactive,
+    .setFeature = set_feature,
 };
