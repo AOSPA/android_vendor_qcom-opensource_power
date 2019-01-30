@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
- * Copyright (C) 2016 The Paranoid Android Project
+ * Copyright (C) 2016-2019 Paranoid Android
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,14 @@
  * limitations under the License.
  */
 
+#include <dlfcn.h>
+#include <fcntl.h>
+#include <errno.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
+#include <linux/input.h>
 #include <hardware/power.h>
 #include "power-common.h"
 #include "power-feature.h"
@@ -43,6 +49,19 @@ void set_device_specific_feature(struct power_module *module __unused,
     if (feature == POWER_FEATURE_DOUBLE_TAP_TO_WAKE) {
         sysfs_write(TAP_TO_WAKE_NODE, tmp_str);
         return;
+    }
+#endif
+
+#ifdef TAP_TO_WAKE_EVENT_NODE
+    if (feature == POWER_FEATURE_DOUBLE_TAP_TO_WAKE) {
+            int fd = open(TAP_TO_WAKE_EVENT_NODE, O_RDWR);
+            struct input_event ev;
+            ev.type = EV_SYN;
+            ev.code = SYN_CONFIG;
+            ev.value = state ? INPUT_EVENT_WAKUP_MODE_ON : INPUT_EVENT_WAKUP_MODE_OFF;
+            write(fd, &ev, sizeof(ev));
+            close(fd);
+            return;
     }
 #endif
 
