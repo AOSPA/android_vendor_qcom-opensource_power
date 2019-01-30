@@ -88,6 +88,10 @@ ifeq ($(call is-board-platform-in-list,msmnile), true)
 LOCAL_SRC_FILES += power-msmnile.c
 endif
 
+ifneq ($(TAP_TO_WAKE_EVENT_NODE),)
+    LOCAL_CFLAGS += -DTAP_TO_WAKE_NODE=\"$(TAP_TO_WAKE_EVENT_NODE)\"
+endif
+
 ifeq ($(TARGET_USES_INTERACTION_BOOST),true)
     LOCAL_CFLAGS += -DINTERACTION_BOOST
 endif
