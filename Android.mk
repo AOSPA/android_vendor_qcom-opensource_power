@@ -138,9 +138,10 @@ else
 endif
 
 ifeq ($(TARGET_POWER_BINDMOUNT_VENDOR),)
+    LOCAL_INIT_RC := android.hardware.power@1.0-service.rc
     LOCAL_VENDOR_MODULE := true
 else
-    LOCAL_INIT_RC := power.qcom.rc
+    LOCAL_INIT_RC := power.qcom.rc android.hardware.power@1.0-service.rc
 endif
 
 LOCAL_MODULE := power.qcom
