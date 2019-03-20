@@ -96,15 +96,25 @@ ifneq ($(TARGET_USES_NON_LEGACY_POWERHAL), true)
 LOCAL_MODULE := power.qcom
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -Wno-unused-parameter -Wno-unused-variable
-LOCAL_VENDOR_MODULE := true
+ifneq ($(TARGET_POWER_BINDMOUNT_VENDOR), true)
+    LOCAL_VENDOR_MODULE := true
+else
+    LOCAL_INIT_RC := power.qcom.rc
+endif
 include $(BUILD_SHARED_LIBRARY)
 else
 
 LOCAL_MODULE := android.hardware.power@1.2-service
-LOCAL_INIT_RC := android.hardware.power@1.2-service.rc
+ifneq ($(TARGET_POWER_BINDMOUNT_VENDOR), true)
+    LOCAL_INIT_RC := android.hardware.power@1.2-service.rc
+else
+    LOCAL_INIT_RC := android.hardware.power@1.2-service.system.rc
+endif
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -Wno-unused-parameter -Wno-unused-variable
-LOCAL_VENDOR_MODULE := true
+ifneq ($(TARGET_POWER_BINDMOUNT_VENDOR), true)
+    LOCAL_VENDOR_MODULE := true
+endif
 include $(BUILD_EXECUTABLE)
 endif
 

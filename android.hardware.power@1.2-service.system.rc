@@ -1,0 +1,8 @@
+on init
+    mount none /system/bin/hw/android.hardware.power@1.2-service /vendor/bin/hw/android.hardware.power@1.2-service bind
+
+service vendor.power-hal-1-2 /vendor/bin/hw/android.hardware.power@1.2-service
+    override
+    class hal
+    user system
+    group system
