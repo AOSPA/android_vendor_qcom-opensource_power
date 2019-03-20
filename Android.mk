@@ -137,10 +137,15 @@ else
   LOCAL_STATIC_LIBRARIES += $(TARGET_POWER_SET_FEATURE_LIB)
 endif
 
+ifeq ($(TARGET_POWER_BINDMOUNT_VENDOR),)
+    LOCAL_VENDOR_MODULE := true
+else
+    LOCAL_INIT_RC := power.qcom.rc
+endif
+
 LOCAL_MODULE := power.qcom
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -Wno-unused-parameter -Wno-unused-variable
-LOCAL_VENDOR_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
 endif
