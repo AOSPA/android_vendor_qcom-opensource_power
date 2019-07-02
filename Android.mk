@@ -14,6 +14,11 @@ LOCAL_SRC_FILES := power-common.c metadata-parser.c utils.c list.c hint-data.c p
 LOCAL_C_INCLUDES := external/libxml2/include \
                     external/icu/icu4c/source/common
 
+ifneq ($(TARGET_USES_NON_LEGACY_POWERHAL), true)
+LOCAL_SHARED_LIBRARIES := liblog libcutils libdl libxml2
+LOCAL_SRC_FILES := power.c metadata-parser.c utils.c list.c hint-data.c powerhintparser.c
+endif
+
 # Include target-specific files.
 ifeq ($(call is-board-platform-in-list, msm8974), true)
 LOCAL_SRC_FILES += power-8974.c
@@ -72,8 +77,6 @@ LOCAL_SRC_FILES += power-710.c
 endif
 
 ifeq ($(call is-board-platform-in-list,trinket), true)
-LOCAL_SHARED_LIBRARIES := liblog libcutils libdl libxml2
-LOCAL_SRC_FILES := power.c metadata-parser.c utils.c list.c hint-data.c powerhintparser.c
 LOCAL_SRC_FILES += power-6125.c
 endif
 
@@ -85,15 +88,14 @@ ifeq ($(TARGET_USES_INTERACTION_BOOST),true)
     LOCAL_CFLAGS += -DINTERACTION_BOOST
 endif
 
-ifeq ($(call is-board-platform-in-list,trinket), true)
+ifneq ($(TARGET_USES_NON_LEGACY_POWERHAL), true)
 LOCAL_MODULE := power.qcom
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -Wno-unused-parameter -Wno-unused-variable
 LOCAL_VENDOR_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
-endif
+else
 
-ifeq ($(call is-board-platform-in-list,trinket), false)
 LOCAL_MODULE := android.hardware.power@1.2-service
 LOCAL_INIT_RC := android.hardware.power@1.2-service.rc
 LOCAL_MODULE_TAGS := optional
