@@ -80,6 +80,10 @@ ifeq ($(call is-board-platform-in-list,trinket), true)
 LOCAL_SRC_FILES += power-6125.c
 endif
 
+ifeq ($(call is-board-platform-in-list,sm6150), true)
+LOCAL_SRC_FILES += power-msmnile.c
+endif
+
 ifeq ($(call is-board-platform-in-list,msmnile), true)
 LOCAL_SRC_FILES += power-msmnile.c
 endif
