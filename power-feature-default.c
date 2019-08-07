@@ -37,7 +37,13 @@ void set_device_specific_feature(struct power_module *module __unused,
 
 #ifdef TAP_TO_WAKE_NODE
     if (feature == POWER_FEATURE_DOUBLE_TAP_TO_WAKE) {
-        sysfs_write(TAP_TO_WAKE_NODE, tmp_str);
+            int fd = open(TAP_TO_WAKE_NODE, O_RDWR);
+            struct input_event ev;
+            ev.type = EV_SYN;
+            ev.code = SYN_CONFIG;
+            ev.value = state ? INPUT_EVENT_WAKUP_MODE_ON : INPUT_EVENT_WAKUP_MODE_OFF;
+            write(fd, &ev, sizeof(ev));
+            close(fd);
         return;
     }
 #endif
