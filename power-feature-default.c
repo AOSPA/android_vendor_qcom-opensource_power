@@ -42,6 +42,19 @@ void set_device_specific_feature(struct power_module *module __unused,
     }
 #endif
 
+#ifdef GENERIC_TAP_TO_WAKE_NODE
+    if (feature == POWER_FEATURE_DOUBLE_TAP_TO_WAKE) {
+        int fd = open(GENERIC_TAP_TO_WAKE_NODE, O_RDWR);
+        struct input_event ev;
+        ev.type = 0x00;
+        ev.code = 1;
+        ev.value = state ? INPUT_EVENT_WAKUP_MODE_ON : INPUT_EVENT_WAKUP_MODE_OFF;
+        write(fd, &ev, sizeof(ev));
+        close(fd);
+        return;
+    }
+#endif
+
 #ifdef DRAW_V_NODE
     if (feature == POWER_FEATURE_DRAW_V) {
         sysfs_write(DRAW_V_NODE, tmp_str);

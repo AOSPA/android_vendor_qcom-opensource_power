@@ -17,6 +17,9 @@
 #ifndef _QCOM_POWER_FEATURE_H
 #define _QCOM_POWER_FEATURE_H
 
+#define INPUT_EVENT_WAKUP_MODE_OFF 4
+#define INPUT_EVENT_WAKUP_MODE_ON 5
+
 #include <hardware/power.h>
 
 void set_device_specific_feature(struct power_module *module, feature_t feature, int state);
