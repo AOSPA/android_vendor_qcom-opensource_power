@@ -17,6 +17,11 @@
 #ifndef _QCOM_POWER_FEATURE_H
 #define _QCOM_POWER_FEATURE_H
 
+#ifdef GENERIC_TAP_TO_WAKE_NODE
+#define INPUT_EVENT_WAKEUP_MODE_OFF 4
+#define INPUT_EVENT_WAKEUP_MODE_ON 5
+#endif
+
 #include <hardware/power.h>
 
 void set_device_specific_feature(struct power_module *module, feature_t feature, int state);
