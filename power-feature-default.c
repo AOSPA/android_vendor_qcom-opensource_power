@@ -22,7 +22,12 @@
 #include <string.h>
 #include <unistd.h>
 
+#ifdef TAP_TO_WAKE_EVENT_NODE
+#ifndef GENERIC_INPUT_HEADER
 #include <linux/input.h>
+#endif // GENERIC_INPUT_HEADER
+#endif // TAP_TO_WAKE_EVENT_NODE
+
 #include <hardware/power.h>
 #include "power-common.h"
 #include "power-feature.h"
