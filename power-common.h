@@ -49,10 +49,20 @@ extern "C" {
 #define INPUT_EVENT_WAKUP_MODE_OFF 4
 #define INPUT_EVENT_WAKUP_MODE_ON 5
 
+#define EV_SYN 0x00
+#define SYN_CONFIG 1
+
 #define HINT_HANDLED (0)
 #define HINT_NONE (-1)
 
 #include <hardware/power.h>
+
+struct input_event {
+	struct timeval time;
+	__u16 type;
+	__u16 code;
+	__s32 value;
+};
 
 enum CPU_GOV_CHECK {
     CPU0 = 0,

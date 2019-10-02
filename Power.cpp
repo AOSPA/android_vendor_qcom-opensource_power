@@ -30,7 +30,6 @@
 #define LOG_TAG "QTI PowerHAL"
 
 #include <android/log.h>
-#include <linux/input.h>
 #include <utils/Log.h>
 #include "Power.h"
 #include "power-common.h"
