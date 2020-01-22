@@ -129,7 +129,7 @@ void set_device_specific_feature(struct power_module *module __unused,
 #endif
 
 #ifdef ONE_FINGER_SWIPE_RIGHT_NODE
-    if (feature == POWER_FEATURE_TARGET_ONE_FINGER_SWIPE_RIGHT) {
+    if (feature == POWER_FEATURE_ONE_FINGER_SWIPE_RIGHT) {
         sysfs_write(ONE_FINGER_SWIPE_RIGHT_NODE, tmp_str);
         return;
     }
@@ -143,7 +143,7 @@ void set_device_specific_feature(struct power_module *module __unused,
 #endif
 
 #ifdef ONE_FINGER_SWIPE_LEFT_NODE
-    if (feature == POWER_FEATURE_TARGET_ONE_FINGER_SWIPE_LEFT) {
+    if (feature == POWER_FEATURE_ONE_FINGER_SWIPE_LEFT) {
         sysfs_write(ONE_FINGER_SWIPE_LEFT_NODE, tmp_str);
         return;
     }
