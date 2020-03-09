@@ -1,12 +1,11 @@
-ifeq ($(TARGET_USES_NON_LEGACY_POWERHAL),true)
-#Power product definitions
+# Power product definitions
 PRODUCT_PACKAGES += android.hardware.power@1.2-impl
 PRODUCT_PACKAGES += android.hardware.power@1.2-service
-else
-PRODUCT_PACKAGES += power.qcom
-endif
 
-#Powerhint File
+# Legacy power product definitions
+PRODUCT_PACKAGES += power.qcom
+
+# Powerhint File
 ifeq ($(TARGET_BOARD_PLATFORM),msmnile)
 PRODUCT_COPY_FILES += vendor/qcom/opensource/power/config/msmnile/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 else ifeq ($(TARGET_BOARD_PLATFORM),kona)
