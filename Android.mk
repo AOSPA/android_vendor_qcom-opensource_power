@@ -2,6 +2,8 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(call is-vendor-board-platform,QCOM),true)
 
+include $(call all-makefiles-under,$(LOCAL_PATH))
+
 # Disable Power HAL by default for legacy targets.
 # Devices can still opt in by setting TARGET_USES_NON_LEGACY_POWERHAL in BoardConfig.mk.
 # Conversely, recent chips, such as sm8150 with an old vendor can opt out.
@@ -182,7 +184,8 @@ LOCAL_VENDOR_OVERLAY_MODULE := true
 endif
 LOCAL_REQUIRED_MODULES := \
     android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service
+    android.hardware.power@1.0-service \
+    android.hardware.power@1.0-service.xml
 
 include $(BUILD_SHARED_LIBRARY)
 else
@@ -195,6 +198,8 @@ LOCAL_VENDOR_MODULE := true
 else
 LOCAL_VENDOR_OVERLAY_MODULE := true
 endif
+LOCAL_REQUIRED_MODULES := android.hardware.power@1.2-service.xml
+
 include $(BUILD_EXECUTABLE)
 endif
 
