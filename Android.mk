@@ -173,6 +173,10 @@ LOCAL_VENDOR_MODULE := true
 else
 LOCAL_VENDOR_OVERLAY_MODULE := true
 endif
+LOCAL_REQUIRED_MODULES := \
+    android.hardware.power@1.0-impl \
+    android.hardware.power@1.0-service
+
 include $(BUILD_SHARED_LIBRARY)
 else
 LOCAL_MODULE := android.hardware.power@1.2-service
