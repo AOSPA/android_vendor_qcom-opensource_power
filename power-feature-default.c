@@ -65,6 +65,13 @@ void set_device_specific_feature(struct power_module *module __unused,
     }
 #endif
 
+#ifdef SINGLE_TAP_TO_WAKE_NODE
+    if (feature == POWER_FEATURE_SINGLE_TAP_TO_WAKE) {
+        sysfs_write(SINGLE_TAP_TO_WAKE_NODE, tmp_str);
+        return;
+    }
+#endif
+
 #ifdef DRAW_V_NODE
     if (feature == POWER_FEATURE_DRAW_V) {
         sysfs_write(DRAW_V_NODE, tmp_str);
