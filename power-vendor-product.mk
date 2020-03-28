@@ -1,10 +1,6 @@
-ifeq ($(TARGET_USES_NON_LEGACY_POWERHAL),true)
 #Power product definitions
 PRODUCT_PACKAGES += android.hardware.power@1.2-impl
 PRODUCT_PACKAGES += android.hardware.power@1.2-service
-else
-PRODUCT_PACKAGES += power.qcom
-endif
 
 #Powerhint File
 ifeq ($(TARGET_BOARD_PLATFORM),msmnile)
