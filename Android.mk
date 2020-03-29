@@ -184,6 +184,7 @@ LOCAL_MODULE := android.hardware.power@1.2-service
 LOCAL_INIT_RC := android.hardware.power@1.2-service.rc
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -Wno-unused-parameter -Wno-unused-variable
+LOCAL_REQUIRED_MODULES := android.hardware.power@1.2-impl
 ifneq ($(TARGET_OVERLAYS_POWERHAL), true)
 LOCAL_VENDOR_MODULE := true
 LOCAL_VINTF_FRAGMENTS := android.hardware.power@1.2-service.xml
