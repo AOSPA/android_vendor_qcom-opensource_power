@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c30a2468_77eb8a5d",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1000480
+      },
+      "writtenOn": "2020-03-29T17:13:38Z",
+      "side": 1,
+      "message": "From where does this come?",
+      "revId": "7b6216f87b708116d6468dc40574c18450d439ff",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad",
+      "unresolved": true
+    }
+  ]
+}
