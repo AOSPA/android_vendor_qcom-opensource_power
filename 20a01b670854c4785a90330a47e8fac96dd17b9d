@@ -16,6 +16,24 @@
       "message": "this is a little unfair.  Alex 2 merged LA.UM.9.14 (which does not have the trinket aidl commit) over LA.UM.9.12 (which has the trinket commit), which is why we lost it.",
       "revId": "20a01b670854c4785a90330a47e8fac96dd17b9d",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9bf6de1_4d97eff9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000488
+      },
+      "writtenOn": "2021-01-21T16:16:06Z",
+      "side": 1,
+      "message": "That\u0027s exactly why i pushed it here. ill do changes in device tree probably, but after",
+      "parentUuid": "d4dfc19f_046a45f6",
+      "revId": "20a01b670854c4785a90330a47e8fac96dd17b9d",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
