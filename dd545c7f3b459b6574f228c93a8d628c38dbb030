@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3c45294_b86a20d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000488
+      },
+      "writtenOn": "2021-11-12T13:10:46Z",
+      "side": 1,
+      "message": "Tobi I\u0027ll let you be incharge of gestures. Whenever you have time! :)",
+      "revId": "dd545c7f3b459b6574f228c93a8d628c38dbb030",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
