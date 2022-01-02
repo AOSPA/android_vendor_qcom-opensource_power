@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "924c7295_ff46eee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2022-01-02T09:18:19Z",
+      "side": 1,
+      "message": "matches CAF (LA.UM.10.2.1 and LA.UM.9.2.1 do not have this file).\n\nmake sure video encoding performance is ok. if not, we can add schedutil hints based on 6125 and other targets.",
+      "revId": "7fc4271ac9a0a1eee110960d0881dc430c75927e",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
