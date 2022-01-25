@@ -16,6 +16,23 @@
       "message": "we should do offscreen gestures instead",
       "revId": "34d46ee790778d4adcc4740713994d700eeca930",
       "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd45bf90_f943f30c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000579
+      },
+      "writtenOn": "2022-01-25T06:05:25Z",
+      "side": 1,
+      "message": "current aospa power service doesn\u0027t seem to have working dt2w here",
+      "revId": "34d46ee790778d4adcc4740713994d700eeca930",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
     }
   ]
 }
