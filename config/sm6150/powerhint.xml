@@ -280,5 +280,18 @@
             Resources="0x40800000, 0x326, 0x40804000, 0x879, 0x40800100, 0x240, 0x40804100, 0x4E0,
             0x42804000, 0x7, 0x42808000, 0x0, 0x41000000, 0x2"/>
 
+         <!-- sustained performance -->
+         <!-- B CPU - Cluster min freq uncapped -->
+         <!-- L CPU - Cluster min freq uncapped -->
+         <!-- B CPU - Cluster max freq ~1.22 GHz -->
+         <!-- L CPU - Cluster max freq ~1.22 Ghz -->
+         <!-- GPU - min freq 325Mhz -->
+         <!-- GPU - max freq 450Mhz -->
+         <!-- GPUBW freq uncapped -->
+         <Config
+             Id="0x00001206" Enable="true" Timeout="0" Target="sdmmagpie"
+             Resources="0x40800000, 0x0, 0x40800100, 0x0, 0x40804000, 0x4CC, 0x40804100, 0x4CC,
+             0X4280C000, 0x145, 0X42810000, 0x1C2, 0x42814000, 0x0"/>
+
     </Powerhint>
 </HintConfigs>
