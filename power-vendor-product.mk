@@ -24,7 +24,11 @@ endif
 else ifeq ($(TARGET_BOARD_PLATFORM),sm6150)
 PRODUCT_COPY_FILES += vendor/qcom/opensource/power/config/sm6150/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 else ifeq ($(TARGET_BOARD_PLATFORM),bengal)
+ifeq ($(TARGET_KERNEL_VERSION),5.15)
+PRODUCT_COPY_FILES += vendor/qcom/opensource/power/config/bengal/powerhint-5.15.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+else
 PRODUCT_COPY_FILES += vendor/qcom/opensource/power/config/bengal/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+endif
 else ifeq ($(TARGET_BOARD_PLATFORM),taro)
 PRODUCT_COPY_FILES += vendor/qcom/opensource/power/config/taro/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 else ifeq ($(TARGET_BOARD_PLATFORM),kalama)
