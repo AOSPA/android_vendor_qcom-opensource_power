@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5f84304_3cf39f6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2023-10-08T21:01:05Z",
+      "side": 1,
+      "message": "would prefer to not do this.  as I mentioned on slack, I think the problem is that the cpp conditions are not working because nothing is defining them from the Makefile.  let\u0027s try making them unconditional before reverting.",
+      "revId": "79ae7b64ea147eafe2ff475eedf9003a04da38bf",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
