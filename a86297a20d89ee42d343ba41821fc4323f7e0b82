@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ce6724f_04c56030",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000012
+      },
+      "writtenOn": "2023-10-18T23:40:28Z",
+      "side": 1,
+      "message": "why? this isn\u0027t any cleaner.  it\u0027s actually worse.  we can combine instead of using +\u003d I guess but I don\u0027t see much value in it.",
+      "revId": "a86297a20d89ee42d343ba41821fc4323f7e0b82",
+      "serverId": "3162e3d8-d894-470e-abd9-724f7b0effad"
+    }
+  ]
+}
