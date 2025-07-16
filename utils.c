@@ -25,6 +25,11 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Changes from Qualcomm Technologies, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
+ *
  */
 #define LOG_NIDEBUG 0
 
@@ -56,9 +61,12 @@ static int (*perf_lock_acq)(int handle, int duration,
     int list[], int numArgs);
 static int (*perf_lock_rel)(int handle);
 static int (*perf_hint)(int, const char *, int, int);
+static int (*perf_get_feedback)(int, const char*);
+static int (*perf_get_feedback_extn)(int, const char*, int, int[]);
+static const char* (*perf_sync_request)(int);
 static PropVal (*perf_get_prop)(const char *prop , const char *def_val);
 static struct list_node active_hint_list_head;
-const char *pkg = "QTI PowerHAL";
+static const char *pkg = "QTI PowerHAL";
 
 static void *get_qcopt_handle()
 {
@@ -226,6 +234,47 @@ PropVal perf_get_property(const char *prop , const char *def_val) {
     return retVal;
 }
 
+int send_perf_hint(int hint_id, const char* pkg_name, int duration, int type)
+{
+    int handle = -1;
+    if (qcopt_handle && perf_hint) {
+        handle = perf_hint(hint_id, pkg_name, duration, type);
+        if (handle < 0)
+            ALOGE("Failed to send perf hint for hint_id: %X.", hint_id);
+    }
+    return handle;
+}
+
+int send_perf_get_feedback(int hint_id, const char* pkg_name)
+{
+    if (qcopt_handle && perf_get_feedback) {
+        return perf_get_feedback(hint_id, pkg_name);
+    }
+    ALOGE("Failed to send perf get feedback for hint_id: %X.", hint_id);
+    return -1;
+}
+
+int send_perf_get_feedback_extn(int hint_id, const char* pkg_name, int numArgs, int list[])
+{
+    if (qcopt_handle && perf_get_feedback_extn) {
+        return perf_get_feedback_extn(hint_id, pkg_name, numArgs, list);
+    }
+    ALOGE("Failed to send perf get feedback for hint_id: %X.", hint_id);
+    return -1;
+}
+
+const char* send_perf_sync_request(int hint_id)
+{
+    if (qcopt_handle && perf_sync_request) {
+        const char* tmp = perf_sync_request(hint_id);
+        if (tmp) {
+            return tmp;
+        } else {
+            ALOGE("Failed to send perf sync request for hint_id: %X.", hint_id);
+        }
+    }
+    return NULL;
+}
 void interaction(int duration, int num_args, int opt_list[])
 {
 #ifdef INTERACTION_BOOST
