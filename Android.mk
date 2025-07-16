@@ -7,8 +7,10 @@ ifeq ($(call is-vendor-board-platform,QCOM),true)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_RELATIVE_PATH := hw
-# KEYSTONE(I1132378f14428bf511f3cea4f419e90a6e89f823,b/181709127)
-LOCAL_SHARED_LIBRARIES := android.hardware.common-V2-ndk android.hardware.common.fmq-V1-ndk libfmq libutils liblog libcutils libdl libxml2 libbase libbinder_ndk android.hardware.power-V5-ndk
+LOCAL_SHARED_LIBRARIES := android.hardware.common.fmq-V1-ndk libfmq libutils liblog libcutils libdl libxml2 libbase libbinder_ndk android.hardware.power-V6-ndk
+LOCAL_VINTF_FRAGMENTS := power-v6.xml
+
+
 LOCAL_HEADER_LIBRARIES += libutils_headers
 LOCAL_HEADER_LIBRARIES += libhardware_headers
 LOCAL_SRC_FILES := power-common.c metadata-parser.c utils.c list.c hint-data.c powerhintparser.c Power.cpp main.cpp PowerHintSession.cpp
@@ -92,7 +94,6 @@ LOCAL_INIT_RC := android.hardware.power-service.rc
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS += -Wno-unused-parameter -Wno-unused-variable
 LOCAL_VENDOR_MODULE := true
-LOCAL_VINTF_FRAGMENTS := power.xml
 include $(BUILD_EXECUTABLE)
 endif
 
